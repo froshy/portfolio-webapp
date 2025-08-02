@@ -9,9 +9,6 @@ from .tables import ProjectEntryTable
 from .filters import ProjectEntryFilter
 # Create your views here.
 
-def index(request):
-    return HttpResponse("Hello, you are at index")
-
 class Index(SingleTableMixin, FilterView):
     table_class = ProjectEntryTable
     model = ProjectEntry
