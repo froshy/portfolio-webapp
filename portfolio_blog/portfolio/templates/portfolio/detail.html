@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>{{ object.proj_name }}</h1>
+
+    <ul>
+        <li><strong>Start Development Year:</strong> {{ object.start_year }}</li>
+        <li><strong>Description</strong>: {{ object.description }}</li>
+        <li><strong>Github Repository</strong>: <a href= {{ object.git_repo }}>{{ object.git_repo }}</li>
+    </ul>
+
+    <a href="{% url 'index' %}">Back to list</a>
+</body>
+</html>

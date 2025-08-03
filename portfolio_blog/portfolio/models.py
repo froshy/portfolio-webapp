@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator 
+from django.urls import reverse
 import datetime
 
 # Create your models here.
@@ -15,3 +16,5 @@ class ProjectEntry(models.Model):
     git_repo = models.URLField(null=False, verbose_name="Github Repository")
     slug = models.SlugField(null=False, unique=True)
 
+    def get_absolute_url(self):
+        return reverse('detail', args=[self.slug])
