@@ -31,6 +31,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'import_export',
+    'bootstrap3',
     'django_tables2',
     'django_filters',
     'portfolio.apps.PortfolioConfig',

@@ -12,4 +12,4 @@ from .filters import ProjectEntryFilter
 class Index(SingleTableMixin, FilterView):
     table_class = ProjectEntryTable
     model = ProjectEntry
-    template_name = 'index.html'
+    template_name = 'portfolio/index.html'
