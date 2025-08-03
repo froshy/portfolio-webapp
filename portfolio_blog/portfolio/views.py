@@ -7,12 +7,17 @@ from django_filters.views import FilterView
 
 from .models import ProjectEntry
 from .tables import ProjectEntryTable
+from .filters import ProjectEntryFilter
 # Create your views here.
 
 class Index(SingleTableMixin, FilterView):
     table_class = ProjectEntryTable
     model = ProjectEntry
     template_name = 'portfolio/index.html'
+    filterset_class = ProjectEntryFilter
+
+    def get_paginate_by(self, *args, **kwargs):
+        super().get_paginate_by(*args, **kwargs)
 
 class Detail(DetailView):
     model = ProjectEntry
