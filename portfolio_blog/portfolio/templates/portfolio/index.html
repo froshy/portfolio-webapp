@@ -10,14 +10,21 @@
     <title>Robin's Portfolio</title>
 </head>
 <body>
-    <div class="container">
+    <div class="container-fluid">
+        <form action="" method="get" class="form">
         {% if filter %}
-        <form action="" method="get" class="form form-inline">
-            {% bootstrap_form filter.form layout="inline" %}
-            {% bootstrap_button "Filter" button_class="btn-primary" %}
+            {% bootstrap_field filter.form.search label="Search all fields" %}
+            <div class="form-inline">
+                {% for field in filter.form.visible_fields %}
+                    {% if field.name !=  'search' %}
+                        {% bootstrap_field field show_label=False %}
+                    {% endif %}
+                {% endfor %}
+                {% bootstrap_button "Filter" button_class="btn btn_primary" %}
+                <a href="{% url 'index' %}" class="btn">Reset</a> 
+            </div>
+            {% endif %}
         </form>
-        {% endif %}
-
         {% render_table table 'django_tables2/bootstrap.html' %}
     </div>
 </body>

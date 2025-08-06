@@ -16,6 +16,9 @@ class ProjectEntry(models.Model):
                                      validators=[MinValueValidator(1900), MaxValueValidator(current_year)], help_text="Enter a year between 1900 and current year")
     git_repo = models.URLField(null=False, verbose_name="Github Repository")
     slug = models.SlugField(null=False, blank=True, unique=True)
+    
+    class Meta:
+        verbose_name_plural = "Project Entries"
 
     def get_absolute_url(self):
         return reverse('detail', args=[self.slug])
