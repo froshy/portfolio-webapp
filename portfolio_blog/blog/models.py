@@ -9,7 +9,10 @@ class BlogEntry(models.Model):
     blog_title = models.CharField(primary_key=True, max_length=50, verbose_name="Blog Title")
     date_time = models.DateTimeField(default=timezone.now, verbose_name="Date & Time")
     content = models.TextField()
-    slug = models.SlugField(unique=True)
+    slug = models.SlugField(null=False, blank=True,unique=True)
+
+    class Meta:
+        verbose_name_plural = "Blog Entries"
 
     def get_absolute_url(self):
         return reverse('detail', args=[self.slug])
