@@ -4,7 +4,6 @@ from django.utils import timezone
 from django.utils.text import slugify
 
 import datetime
-
 from .choices import CategoryChoices 
 
 class Category(models.Model):
