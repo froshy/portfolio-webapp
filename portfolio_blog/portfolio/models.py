@@ -5,10 +5,11 @@ from django.db import models
 from django.urls import reverse
 from django.utils.text import slugify
 
-
 ###################
 # Default Helpers #
 ###################
+
+
 def category_default():
     obj, _ = Category.objects.get_or_create(name="General")
     return obj

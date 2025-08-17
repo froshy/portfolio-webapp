@@ -11,6 +11,10 @@ from .choices import CategoryChoices
 
 
 def category_default():
+    """
+    Helper for setting category default.
+    Used when Blog item is deleted and on_delete = SET_DEFAULT
+    """
     category, _ = Category.objects.get_or_create(name="General")
     return category.pk
 
