@@ -22,15 +22,28 @@ def current_year():
 class Category(models.Model):
     name = models.CharField(unique=True)
 
+    class Meta:
+        verbose_name_plural = "Categories"
+
     def __str__(self):
         return self.name
+
+    def delete(self, *args, **kwargs):
+        if self.name == "General":
+            raise Exception("'General' category can not be deleted'")
+        super().delete(*args, **kwargs)
 
 
 class ProjectEntry(models.Model):
     proj_name = models.CharField(
         primary_key=True, max_length=50, verbose_name="Project Name"
     )
-    category = models.ForeignKey(Category, default=category_default)
+    category = models.ForeignKey(
+        Category,
+        on_delete=models.SET_DEFAULT,
+        default=category_default,
+        verbose_name="Project Category",
+    )
     description = models.TextField(verbose_name="Description")
     start_year = models.IntegerField(
         null=False,

@@ -5,9 +5,9 @@ from django.utils.text import slugify
 
 from .choices import CategoryChoices
 
-####################
-# DEFAULTS HELPERS #
-####################
+###################
+# DEFAULT HELPERS #
+###################
 
 
 def category_default():
@@ -25,6 +25,11 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+    def delete(self, *args, **kwargs):
+        if self.name == "General":
+            raise Exception("'General' category can not be deleted.")
+        super().delete(*args, **kwargs)
+
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.name)
@@ -40,6 +45,7 @@ class BlogEntry(models.Model):
         default=category_default,
         on_delete=models.SET_DEFAULT,
         related_name="blogs",
+        verbose_name="Blog Category",
     )
     slug = models.SlugField(null=False, blank=True, unique=True)
 
