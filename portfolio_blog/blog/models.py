@@ -20,6 +20,11 @@ def category_default():
 
 
 class Category(models.Model):
+    """
+    models.Model Category Object.
+    Used as foreign key relation to BlogEntry
+    """
+
     name = models.CharField(unique=True, max_length=20, choices=CategoryChoices)
     slug = models.SlugField(unique=True, blank=True, default="")
 
@@ -41,6 +46,11 @@ class Category(models.Model):
 
 
 class BlogEntry(models.Model):
+    """
+    The BlogEntry models.Model object.
+    ORM for BlogEntry table.
+    """
+
     title = models.CharField(primary_key=True, max_length=50, verbose_name="Blog Title")
     date_time = models.DateTimeField(default=timezone.now, verbose_name="Date & Time")
     content = models.TextField()

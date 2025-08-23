@@ -15,7 +15,6 @@ def category_default():
     return obj
 
 
-# Create your models here.
 def current_year():
     return datetime.date.today().year
 
